@@ -1,6 +1,6 @@
 NODE1=127.0.0.1
 REGISTRY=quay.io/coreos/etcd
-ETCD_VERSION=v3.3.15
+ETCD_VERSION=v3.5.2
 DATA_DIR="etcd-data"
 
 echo "Creating etcd-data volume"
