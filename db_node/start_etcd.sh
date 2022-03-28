@@ -23,5 +23,3 @@ docker run \
 
 sleep 10;
 echo "Listing the cluster member..."
-
-etcdctl --endpoints=http://${NODE1}:2379 member list
