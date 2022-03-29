@@ -17,6 +17,6 @@ curl -sfL https://get.k3s.io > install.sh
 ls -lah
 
 cd ..
-tar -cvf k3s_offline_${version}.tar.gz k3s_offline
+tar -czvf k3s_offline_${version}.tar.gz k3s_offline
 
 ls -lah
