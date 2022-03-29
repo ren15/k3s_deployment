@@ -17,6 +17,7 @@ rm k3s-airgap-images-amd64.tar.zst
 
 # k3s install script
 curl -sfL https://get.k3s.io > install.sh
+chmod +x install.sh
 
 ls -lah
 
