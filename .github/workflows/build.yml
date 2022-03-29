@@ -12,3 +12,20 @@ jobs:
     - name: Prepare k3s offline package
       run: |
         bash prepare_airgap_installer/download_package.sh
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        title: "Development Build"
+        files: |
+          k3s_offline_*.tar.gz
+
+  test_download:
+    needs: [build]
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Download from github release
+      run: |
+        export DEBIAN_FRONTEND=noninteractive
+        ls -lah
