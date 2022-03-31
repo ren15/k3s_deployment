@@ -2,6 +2,9 @@ name: ci
 
 on: push
 
+env:
+  K3S_VERSION: v1.22.7+k3s1
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -11,13 +14,13 @@ jobs:
 
     - name: Prepare k3s offline package
       run: |
-        bash prepare_airgap_installer/download_package.sh
+        bash prepare_airgap_installer/download_package.sh ${{ env.K3S_VERSION }}
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        title: "Development Build"
+        automatic_release_tag: "${{ env.K3S_VERSION }}"
+        title: "${{ env.K3S_VERSION }}"
         files: |
           k3s_offline_*.tar.gz
 
@@ -28,7 +31,7 @@ jobs:
     - name: Download from github release
       run: |
         ls -lah
-        wget -q https://github.com/ren15/k3s_deployment/releases/download/latest/k3s_offline_v1.23.4+k3s1.tar.gz
-        tar xvf k3s_offline_v1.23.4+k3s1.tar.gz
+        wget -q https://github.com/ren15/k3s_deployment/releases/download/${{ env.K3S_VERSION }}/k3s_offline_${{ env.K3S_VERSION }}.tar.gz
+        tar xvf k3s_offline_${{ env.K3S_VERSION }}.tar.gz
         ls -lah k3s*
         k3s_offline/k3s --version
