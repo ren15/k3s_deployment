@@ -3,7 +3,7 @@ name: ci
 on: push
 
 env:
-  K3S_VERSION: v1.24.4+k3s1
+  K3S_VERSION: v1.24.6+k3s1
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
 
     - name: Prepare k3s offline package
       run: |
-        bash prepare_airgap_installer/download_package.sh ${{ env.K3S_VERSION }}
+        bash airgap_installer/download_package.sh ${{ env.K3S_VERSION }}
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
