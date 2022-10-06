@@ -17,6 +17,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC='--flannel-backend=none --disabl
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
+helm repo add cilium https://helm.cilium.io/
+
 # configure helm 
 export API_SERVER_IP=10.2.0.11
 export API_SERVER_PORT=6443
